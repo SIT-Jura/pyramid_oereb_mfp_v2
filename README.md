@@ -43,3 +43,38 @@ This subproject was created consequently of
 Access the history of the templates by using this
 [openoereb/pyramid_oereb commit](https://github.com/openoereb/pyramid_oereb/commit/352970f3504385a462797dab7de30fd00896b922),
 which deleted the templates there as a starting point.
+
+## Installation
+
+```
+cd /var/www/vhosts/sitj/private
+git clone git@github.com:SIT-Jura/pyramid_oereb_mfp_v2.git
+mv pyramid_oereb_mfp_v2/ pyramid_oereb_mfp/
+cd pyramid_oereb_mfp
+make serve
+```
+
+Pour que les deux applications puissent communiquer via Docker, il faut lancer la commande suivante:
+(une seule fois dans la vie d'un serveur)
+
+```
+docker network create print-network
+```
+
+En cas d'oublie, un message d'erreur très clair apparait.
+
+## Restart 
+
+```
+cd /var/www/vhosts/sitj/private/pyramid_oereb_mfp
+docker-compose up -d
+```
+
+Si le print de pyramid oereb ne fonctionne pas, redémarrer le conteneur
+
+## Update fichier rcju pki
+En cas de problème avec les fichiers pki,
+mettre à jour les trois fichiers crt dans
+ docker/root/usr/local/share/ca-certificates/
+
+Depuis [https://pki.jura.ch/](https://pki.jura.ch/)
